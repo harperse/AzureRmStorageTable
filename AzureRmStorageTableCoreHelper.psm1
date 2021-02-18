@@ -53,7 +53,7 @@ function ExecuteQueryAsync
 		$AllRows = @()
 		do
 		{
-			$Results = $Table.ExecuteQuerySegmentedAsync($TableQuery, $token)
+			$Results = $Table.CloudTable.ExecuteQuerySegmentedAsync($TableQuery, $token)
 			$token = $Results.Result.ContinuationToken
 			$AllRows += $Results.Result.Results
 		} while ($token)
@@ -755,7 +755,7 @@ function Remove-AzTableRow
 
 		if ($entityToDelete -ne $null)
 		{
-   			$Results += $Table.Execute([Microsoft.Azure.Cosmos.Table.TableOperation]::Delete($entityToDelete))
+   			$Results += $Table.CloudTable.Execute([Microsoft.Azure.Cosmos.Table.TableOperation]::Delete($entityToDelete))
 		}
 	}
 	
@@ -765,59 +765,3 @@ function Remove-AzTableRow
 	}
 }
 
-# Aliases
-
-If (-not (Get-Alias -Name Add-StorageTableRow -ErrorAction SilentlyContinue))
-{
-	New-Alias -Name Add-StorageTableRow -Value Add-AzTableRow
-}
-
-If (-not (Get-Alias -Name Add-AzureStorageTableRow -ErrorAction SilentlyContinue))
-{
-	New-Alias -Name Add-AzureStorageTableRow -Value Add-AzTableRow
-}
-
-If (-not (Get-Alias -Name Get-AzureStorageTableTable -ErrorAction SilentlyContinue))
-{
-	New-Alias -Name Get-AzureStorageTableTable -Value Get-AzTableTable
-}
-
-If (-not (Get-Alias -Name Get-AzureStorageTableRowAll -ErrorAction SilentlyContinue))
-{
-	New-Alias -Name Get-AzureStorageTableRowAll -Value Get-AzTableRowAll
-}
-
-If (-not (Get-Alias -Name Get-AzureStorageTableRowByPartitionKey -ErrorAction SilentlyContinue))
-{
-	New-Alias -Name Get-AzureStorageTableRowByPartitionKey -Value Get-AzTableRowByPartitionKey
-}
-
-If (-not (Get-Alias -Name Get-AzureStorageTableRowByPartitionKeyRowKey -ErrorAction SilentlyContinue))
-{
-	New-Alias -Name Get-AzureStorageTableRowByPartitionKeyRowKey -Value Get-AzTableRowByPartitionKeyRowKey
-}
-
-If (-not (Get-Alias -Name Get-AzureStorageTableRowByColumnName -ErrorAction SilentlyContinue))
-{
-	New-Alias -Name Get-AzureStorageTableRowByColumnName -Value Get-AzTableRowByColumnName
-}
-
-If (-not (Get-Alias -Name Get-AzureStorageTableRowByCustomFilter -ErrorAction SilentlyContinue))
-{
-	New-Alias -Name Get-AzureStorageTableRowByCustomFilter -Value Get-AzTableRowByCustomFilter
-}
-
-If (-not (Get-Alias -Name Get-AzureStorageTableRow -ErrorAction SilentlyContinue))
-{
-	New-Alias -Name Get-AzureStorageTableRow -Value Get-AzTableRow
-}
-
-If (-not (Get-Alias -Name Update-AzureStorageTableRow -ErrorAction SilentlyContinue))
-{
-	New-Alias -Name Update-AzureStorageTableRow -Value Update-AzTableRow
-}
-
-If (-not (Get-Alias -Name Remove-AzureStorageTableRow -ErrorAction SilentlyContinue))
-{
-	New-Alias -Name Remove-AzureStorageTableRow -Value Remove-AzTableRow
-}
