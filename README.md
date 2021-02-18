@@ -33,7 +33,7 @@ Minimum requirements are (these are covered if you install the full Az module ve
     
 2. Install AzureRmStorageTable
     ```powershell
-    Install-Module AzureRmStorageTable
+    Install-Module AzTable
     ```
 
 Below you will get the help content of every function that is exposed through the AzureRmStorageTable module:
